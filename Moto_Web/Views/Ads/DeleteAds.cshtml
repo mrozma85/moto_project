@@ -1,0 +1,133 @@
+﻿@using Moto_Web.Models.VM;
+@model AdDeleteVM
+
+<form asp-action="DeleteAds">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-primary">Usuń ogłoszenie</h1>
+        <hr />
+
+        <input hidden asp-for="Ad.Id" />
+        <input hidden asp-for="Ad.VehicleId" />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-2">
+                <label asp-for="Ad.Id" class="control-label pt-2" style="font-size:20px;">Nr ogłoszenia</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Id" disabled class="form-control" />
+                <span asp-validation-for="Ad.Id" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Id" class="control-label pt-2" style="font-size:20px;">Nr pojazdu</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Id" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Id" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Description" class="control-label pt-2" style="font-size:20px;">Opis pojazdu</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Description" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Description" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Title" class="control-label pt-2" style="font-size:20px;">Nazwa ogłoszenia</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Title" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Title" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.CompanyId" class="control-label pt-2" style="font-size:20px;">Marka</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.CompanyId" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.CompanyId" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.ModelId" class="control-label pt-2" style="font-size:20px;">Model</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.ModelId" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.ModelId" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Year" class="control-label pt-2" style="font-size:20px;">Rok produkcji</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Year" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Year" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Engine" class="control-label pt-2" style="font-size:20px;">Pojemność silnika (cm3)</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Engine" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Engine" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Color" class="control-label pt-2" style="font-size:20px;">Kolor pojazdu</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Color" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Color" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Location" class="control-label pt-2" style="font-size:20px;">Lokalizacja</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Location" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Location" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.Vehicle.Price" class="control-label pt-2" style="font-size:20px;">Cena pojazdu (PLN)</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Ad.Vehicle.Price" disabled class="form-control" />
+                <span asp-validation-for="Ad.Vehicle.Price" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.AdTypeId" class="control-label pt-2" style="font-size:20px;">Typ ogłoszenia</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="Ad.AdTypeId" disabled class="form-select w-100 bg-white" asp-items="@Model.AdTypeList">
+                    <option disabled selected> --Wybierz typ ogłoszenia-- </option>
+                </select>
+                <span asp-validation-for="Ad.AdTypeId" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Ad.CategoryId" class="control-label pt-2" style="font-size:20px;">Kategoria ogłoszenia</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="Ad.CategoryId" disabled class="form-select w-100 bg-white" asp-items="@Model.CategoryList">
+                    <option disabled selected> --Wybierz typ ogłoszenia-- </option>
+                </select>
+
+                <span asp-validation-for="Ad.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="col-5 offset-2">
+                <a asp-action="IndexAds" asp-controller="Ads" class="btn-primary btn form-control">Wróć do ogłoszeń</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Usuń" class="btn-primary btn form-control" />
+            </div>
+        
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

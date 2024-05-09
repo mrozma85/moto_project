@@ -1,0 +1,65 @@
+﻿@using Moto_Web.Models.Dto;
+@using Moto_Web.Models.VM
+@model HomeVM
+
+<section class="popular-deals section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Wszystkie pojazdy:</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- offer 01 -->
+            @foreach (var ad in Model.Ad)
+                {
+                    <div class="col-sm-12 col-lg-4">                
+                        <div class="row p-1">
+                            <div class="col p-4">
+
+                                <!-- product card -->
+                                <div class="product-item bg-light">
+                                    <div class="card">
+                                        <div class="thumb-content">
+                                            <div class="price">@ad.Vehicle.Condition</div>
+                                        <a href="">
+                                            @{
+                                                var base64 = Convert.ToBase64String(ad.FullImageData);
+                                                var imgscr = string.Format("data:image/gif;base64,{0}", base64);
+                                            }
+                                            <img class="card-img-top img-fluid" img src="@imgscr" alt="Card image cap" />
+                                        </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title"><a href="">@ad.Vehicle.Title</a></h4>
+                                            <ul class="list-inline product-meta">
+                                                <li class="list-inline-item">
+                                                    <a href=""><i class="fa fa-folder-open-o"></i>@ad.Vehicle.Year</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href=""><i class="fa fa-folder-open-o"></i>@ad.Vehicle.Location</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href=""><i class="fa fa-calendar"></i>@ad.Vehicle.Color</a>
+                                                </li>
+                                            </ul>
+                                        
+                                            <div class="price">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item selected">@ad.Vehicle.Price PLN</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="DetailsVehicle" asp-route-id="@ad.Id">Szczegóły</a>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                }
+            
+        </div>
+    </div>
+</section>

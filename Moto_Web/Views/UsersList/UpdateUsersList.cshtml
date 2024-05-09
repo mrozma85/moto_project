@@ -1,0 +1,119 @@
+﻿@using Moto_Web.Models.VM;
+@model UsersUpdateVM
+
+<form asp-action="UpdateUsersList">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-primary">Zmień</h1>
+        <hr />
+
+        @for(int i = 0; i < Model.User.Count; i++)
+        {
+            <input hidden asp-for="@Model.User[i].Id" />
+
+            <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].Name"></label>
+                    <input asp-for="@Model.User[i].Name" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].UserName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].UserName"></label>
+                    <input asp-for="@Model.User[i].UserName" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].UserName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].NormalizedUserName"></label>
+                    <input asp-for="@Model.User[i].NormalizedUserName" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].NormalizedUserName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].Email"></label>
+                    <input asp-for="@Model.User[i].Email" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].NormalizedEmail"></label>
+                    <input asp-for="@Model.User[i].NormalizedEmail" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].NormalizedEmail" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].EmailConfirmed"></label>
+                    <input asp-for="@Model.User[i].EmailConfirmed" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].EmailConfirmed" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].PasswordHash"></label>
+                    <input asp-for="@Model.User[i].PasswordHash" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].PasswordHash" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].SecurityStamp"></label>
+                    <input asp-for="@Model.User[i].SecurityStamp" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].SecurityStamp" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].PhoneNumber"></label>
+                    <input asp-for="@Model.User[i].PhoneNumber" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].PhoneNumberConfirmed"></label>
+                    <input asp-for="@Model.User[i].PhoneNumberConfirmed" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].PhoneNumberConfirmed" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].TwoFactorEnabled"></label>
+                    <input asp-for="@Model.User[i].TwoFactorEnabled" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].TwoFactorEnabled" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].LockoutEnd"></label>
+                    <input asp-for="@Model.User[i].LockoutEnd" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].LockoutEnd" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].LockoutEnabled"></label>
+                    <input asp-for="@Model.User[i].LockoutEnabled" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].LockoutEnabled" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User[i].AccessFailedCount"></label>
+                    <input asp-for="@Model.User[i].AccessFailedCount" class="form-control" />
+                    <span asp-validation-for="@Model.User[i].AccessFailedCount" class="text-danger"></span>
+                </div>
+                <h6 class="font-weight-bold pt-4 pb-1">Rola:</h6>
+                <select asp-for="@Model.Role[i].Role.Name" class="form-select w-100 bg-white" asp-items="@Model.RoleList">
+                    <option disabled selected> --Wybierz rola dla użytkownika-- </option>
+                </select>
+                <span asp-validation-for="@Model.Role[i].Role.Id" class="text-danger"></span>
+
+                @* <div>
+                    <label>
+                        @foreach (var userRole in Model.User[i].UserRoles)
+                        {
+                            <p>@Html.DisplayFor(model => userRole.Role.Name)&nbsp;</p>
+                        }
+                    </label>
+                </div> *@
+
+            <div class="col-5 offset-2">
+                <a asp-action="UpdateUsersList" asp-controller="UsersList" class="btn-primary btn form-control">Wróc do listy</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Zmień" class="btn btn-success form-control" />
+            </div>
+
+            
+
+        </div>
+        }
+
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

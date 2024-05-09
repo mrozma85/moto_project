@@ -1,0 +1,48 @@
+﻿@using Moto_Web.Models.VM;
+@model EditRoleUserViewModelVM
+
+<form asp-action="UpdateUserRolesList">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-primary">Zmień</h1>
+        <hr />
+
+        <input hidden asp-for="UserRole.UserId" />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Id"></label>
+                <input asp-for="Id" disabled class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Roles"></label>
+                <input asp-for="Roles" class="form-control" />
+                <span asp-validation-for="Roles" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="UserRole.RoleId" class="control-label pt-2" style="font-size:20px;">Typ ogłoszenia</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="UserRole.RoleId" class="form-select w-100 bg-white" asp-items="@Model.RoleList">
+                    <option disabled selected> --Wybierz nazwe roli-- </option>
+                </select>
+                <span asp-validation-for="UserRole.RoleId" class="text-danger"></span>
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="IndexUserRolesList" asp-controller="UserRolesList" class="btn-primary btn form-control">Wróc do listy</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Zmień" class="btn btn-success form-control" />
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

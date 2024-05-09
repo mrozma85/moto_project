@@ -1,0 +1,142 @@
+﻿@using Moto_Web.Models.Dto;
+@model IEnumerable<AdDTO>
+
+<section class="dashboard section">
+	<!-- Container Start -->
+	<div class="container">
+		<!-- Row Start -->
+		<div class="row">
+			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+				<!-- Recently Favorited -->
+				<div class="widget dashboard-container my-adslist">
+					<h3 class="widget-header">Ogłoszenia</h3>
+					<table class="table table-responsive product-dashboard-table">
+						<tbody>
+							@foreach (var item in Model)
+						    {
+								<tr>
+									<td class="product-thumb">
+										@{
+											var base64 = Convert.ToBase64String(item.FullImageData);
+											var imgscr = string.Format("data:image/gif;base64,{0}", base64);
+										}
+										<img width="80px" height="auto" src="@imgscr" alt="image description">
+								</td>
+								<td class="product-details">
+									<h3 class="title"></h3>
+									<span class="add-id"><strong>ID:</strong> @item.Id </span>
+								    <span class="add-id"><strong>Użytkownik:</strong> @item.ApplicationUser.UserName </span>
+									<span><strong>Nazwa ogłoszenia: </strong>@item.Vehicle.Title</span>
+									<span><strong>Cena pojazdu: </strong>@item.Vehicle.Price</span>
+									<span class="location"><strong>Lokalizacja</strong>@item.Vehicle.Location</span>
+								</td>
+
+								<td class="action" data-title="Akcja">
+									<div class="">
+										<ul class="list-inline justify-content-center">
+											
+											<li class="list-inline-item">
+													<a asp-controller="Ads" asp-action="UpdateAds" asp-route-id="@item.Id" class="edit" >
+													<i class="fa fa-pencil"></i>
+												</a>
+											</li>
+											<li class="list-inline-item">
+													<a asp-controller="Ads" asp-action="DeleteAds" asp-route-id="@item.Id" class="delete" >
+													<i class="fa fa-trash"></i>
+												</a>
+
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							}
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!-- Row End -->
+		<div class="form-group">
+			<div class="col-md-10">
+				<a class="btn btn-primary" href="https://localhost:7001/api/AdAPI/ExportExcel" download> Export do pliku Excel</a>
+			</div>
+			<br />
+			<div class="col-md-10">
+				<a class="btn btn-primary" href="https://localhost:7001/api/AdAPI/ExportPDF" download> Export do pliku PDF</a>
+			</div>
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+
+
+
+
+
+@*
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Ad List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-controller="Ads" asp-action="CreateAds" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>Create New Ad</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Numer ogłoszenia
+                </th>
+                <th>
+                    Typ ogłoszenia
+                </th>
+                <th>
+                    Marka pojazdu
+                </th>
+                <th>
+                    Opis
+                </th>
+                <th>
+                    Kategoria
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    Lokalizacja
+                </th>
+                <th>
+                    Silnik
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>                    
+                    <td>@item.AdType.Name</td>
+                    <td>@item.Vehicle.Title</td>                   
+                    <td>@item.Vehicle.Description</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.Vehicle.Price</td>
+                    <td>@item.Vehicle.Location</td>
+                    <td>@item.Vehicle.Engine</td>
+                    <td>
+                        <a asp-controller="Ads" asp-action="UpdateAds" asp-route-id="@item.Id" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Ads" asp-action="DeleteAds" asp-route-id="@item.Id" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>*@
+

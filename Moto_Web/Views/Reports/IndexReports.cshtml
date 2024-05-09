@@ -1,0 +1,35 @@
+﻿
+<div class="container p-4 border">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Raporty
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Raport Ogłoszenia
+                </td>
+                <td>
+                    <a class="btn btn-success" href="https://localhost:7001/api/AdAPI/ExportVehicleExcel" download><i class="bi bi-file-earmark-spreadsheet"></i></a>
+                    <a class="btn btn-danger" href="https://localhost:7001/api/AdAPI/ExportPDF" download><i class="bi bi-file-pdf"></i></a>
+                </td>
+            </tr>
+                <tr>
+                    <td>
+                        Raport Lista użytkowników
+                    </td>
+                    <td>
+                    <a class="btn btn-success" href="https://localhost:7001/api/AdAPI/GetDataUserAdsEXCEL" download><i class="bi bi-file-earmark-spreadsheet"></i></a>
+                    <a class="btn btn-danger" href="https://localhost:7001/api/AdAPI/GetDataUserAdsPDF" download><i class="bi bi-file-pdf"></i></a>
+                    </td>
+                </tr>
+    </table>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

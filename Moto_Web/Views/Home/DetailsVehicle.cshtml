@@ -1,0 +1,296 @@
+﻿@using Moto_Web.Models.VM;
+@model HomeVM
+
+<section class="section bg-gray">
+	<input hidden asp-for="@Model.Ad[0].Id" />
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<!-- Left sidebar -->
+			<div class="col-md-8">
+				<div class="product-details">
+					<h1 class="product-title"> @Model.Ad[0].Vehicle.Title </h1>
+					<div class="product-meta">
+						<ul class="list-inline">
+							<li class="list-inline-item"><i class="fa fa-user-o"></i> Rok produkcji:<a href=""> @Model.Ad[0].Vehicle.Year</a></li>
+							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Kolor:<a href=""> @Model.Ad[0].Vehicle.Color</a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Lokalizacja:<a href=""> @Model.Ad[0].Vehicle.Location</a></li>
+						</ul>
+					</div>
+					<div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							@for (int i = 0; i < Model.Ad[0].ImageByte.Count; i++)
+							{
+								if (i == 0)
+								{
+									<li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+								}
+								else
+								{
+									<li data-target="#myCarousel" data-slide-to="@i"></li>
+								}
+							}
+						</ol>
+						
+						<div class="carousel-inner">	
+							@if (Model.Ad[0].ImageByte.ToList().Count > 0)
+							{
+								<div class="carousel-inner">
+									@for (int i = 0; i < Model.Ad[0].ImageByte.Count(); i++)
+									{
+										if(i == 0)
+										{
+											<div class="carousel-item active">
+												<img class="d-block w-100" height="350" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Ad[0].ImageByte.ToList()[i].FileData)" alt="First slide">
+											</div>
+										}
+										else
+										{
+											<div class="carousel-item">
+												<img class="d-block w-100" height="350" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Ad[0].ImageByte.ToList()[i].FileData)" alt="First slide">
+											</div>
+										}
+									}
+								</div>
+							}
+						</div>
+
+						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+					<div class="content">
+						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Dane techniczne pojazdu</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Opis</a>
+							</li>
+														
+							@*<li class="nav-item">
+								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Reviews</a>
+							</li>*@
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								<table class="table table-bordered product-table">
+									<tbody>
+										<tr>
+											<td>Marka</td>
+											<td>@Model.Ad[0].Vehicle.Model.Company.Name</td>
+										</tr>
+										<tr>
+											<td>Model</td>
+											<td>@Model.Ad[0].Vehicle.Model.Name</td>
+										</tr>
+										<tr>
+											<td>Cena</td>
+											<td>@Model.Ad[0].Vehicle.Price</td>
+										</tr>
+										<tr>
+											<td>Lokalizacja</td>
+											<td>@Model.Ad[0].Vehicle.Location</td>
+										</tr>
+
+										<tr>
+											<td>Rok produkcji</td>
+											<td>@Model.Ad[0].Vehicle.Year</td>
+										</tr>
+										<tr>
+											<td>Kolor</td>
+											<td>@Model.Ad[0].Vehicle.Color</td>
+										</tr>
+										<tr>
+											<td>Pojemność silnika</td>
+											<td>@Model.Ad[0].Vehicle.Engine</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+								<h3 class="tab-title">Opis pojazdu</h3>
+								<p>@Model.Ad[0].Vehicle.Description</p>
+							</div>
+							@*<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+								<h3 class="tab-title">Product Review</h3>
+								<div class="product-review">
+									<div class="media">
+										<!-- Avater -->
+										<img src="images/user/user-thumb.jpg" alt="avater">
+										<div class="media-body">
+											<!-- Ratings -->
+											<div class="ratings">
+												<ul class="list-inline">
+													<li class="list-inline-item">
+														<i class="fa fa-star"></i>
+													</li>
+													<li class="list-inline-item">
+														<i class="fa fa-star"></i>
+													</li>
+													<li class="list-inline-item">
+														<i class="fa fa-star"></i>
+													</li>
+													<li class="list-inline-item">
+														<i class="fa fa-star"></i>
+													</li>
+													<li class="list-inline-item">
+														<i class="fa fa-star"></i>
+													</li>
+												</ul>
+											</div>
+											<div class="name">
+												<h5>Jessica Brown</h5>
+											</div>
+											<div class="date">
+												<p>Mar 20, 2018</p>
+											</div>
+											<div class="review-comment">
+												<p>
+													Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="review-submission">
+										<h3 class="tab-title">Submit your review</h3>
+										<!-- Rate -->
+										<div class="rate">
+											<div class="starrr"></div>
+										</div>
+										<div class="review-submit">
+											<form action="#" class="row">
+												<div class="col-lg-6">
+													<input type="text" name="name" id="name" class="form-control" placeholder="Name">
+												</div>
+												<div class="col-lg-6">
+													<input type="email" name="email" id="email" class="form-control" placeholder="Email">
+												</div>
+												<div class="col-12">
+													<textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
+												</div>
+												<div class="col-12">
+													<button type="submit" class="btn btn-main">Sumbit</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>*@
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="widget price text-center">
+						<h4>Cena pojazdu</h4>
+						<p>@Model.Ad[0].Vehicle.Price</p> <p>PLN</p>
+					</div>
+					<!-- User Profile widget -->
+					<div class="widget user">
+						<img class="rounded-circle" src="images/user/user-thumb.jpg" alt="">
+						<h4>Dane użytkownika</h4>
+						<br />
+						<h4><a href="">@Model.Ad[0].ApplicationUser.UserName</a></h4>
+						<br />
+						<p class="member-time">Kontakt: @Model.Ad[0].ApplicationUser.PhoneNumber</p>
+						@* <a href="">See all ads</a>
+						<ul class="list-inline mt-20">
+							<li class="list-inline-item"><a href="" class="btn btn-contact">Contact</a></li>
+							<li class="list-inline-item"><a href="" class="btn btn-offer">Make an offer</a></li>
+						</ul> *@
+					</div>
+					<!-- Map Widget -->
+					<h2> Sprawdź również</h2>
+					<br />
+					<div class="carousel-inner">
+						<div class="row">
+							@foreach (var ad in Model.AdName)
+							{
+											<!-- product card -->
+											<div class="product-item bg-light">
+												<div class="card">
+													<div class="thumb-content">
+														<div class="price">@ad.Vehicle.Condition</div>
+														<a href="">
+															@{
+																var base64 = Convert.ToBase64String(ad.FullImageData);
+																var imgscr = string.Format("data:image/gif;base64,{0}", base64);
+															}
+															<img class="card-img-top img-fluid" img src="@imgscr" alt="Card image cap" />
+														</a>
+													</div>
+													<div class="card-body">
+														<h4 class="card-title"><a href="">@ad.Vehicle.Title</a></h4>
+														<ul class="list-inline product-meta">
+															<li class="list-inline-item">
+																<a href=""><i class="fa fa-folder-open-o"></i>@ad.Vehicle.Year</a>
+															</li>
+															<li class="list-inline-item">
+																<a href=""><i class="fa fa-folder-open-o"></i>@ad.Vehicle.Location</a>
+															</li>
+															<li class="list-inline-item">
+																<a href=""><i class="fa fa-calendar"></i>@ad.Vehicle.Color</a>
+															</li>
+														</ul>
+														<p class="card-text">@ad.Vehicle.Color</p>
+														<div class="price">
+															<ul class="list-inline">
+																<li class="list-inline-item selected">@ad.Vehicle.Price PLN</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<a class="nav-link" asp-area="" asp-controller="Home" asp-action="DetailsVehicle" asp-route-id="@ad.Id">Szczegóły</a>
+											</div>
+							}
+						</div>
+						<div class="map">
+							<div id="map"></div>
+						</div>
+					</div>
+					@* <!-- Rate Widget -->
+					<div class="widget rate">
+						<!-- Heading -->
+						<h5 class="widget-header text-center">
+							What would you rate
+							<br>
+							this product
+						</h5>
+						<!-- Rate -->
+						<div class="starrr"></div>
+					</div>
+					<!-- Safety tips widget -->
+					<div class="widget disclaimer">
+						<h5 class="widget-header">Safety Tips</h5>
+						<ul>
+							<li>Meet seller at a public place</li>
+							<li>Check the item before you buy</li>
+							<li>Pay only after collecting the item</li>
+							<li>Pay only after collecting the item</li>
+						</ul>
+					</div>
+					<!-- Coupon Widget -->
+					<div class="widget coupon text-center">
+						<!-- Coupon description -->
+						<p>
+							Have a great product to post ? Share it with
+							your fellow users.
+						</p>
+						<!-- Submii button -->
+						<a href="" class="btn btn-transparent-white">Submit Listing</a>
+					</div> *@
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Container End -->
+</section>

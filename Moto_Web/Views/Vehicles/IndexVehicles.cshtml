@@ -1,0 +1,42 @@
+﻿@using Moto_Web.Models.Dto;
+@model IEnumerable<VehicleDTO>
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Lista pojazdów</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-controller="Vehicles" asp-action="CreateVehicles" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>Create New Vehicle</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Model
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CompanyId</td>
+                    <td>@item.ModelId</td>
+                    <td>
+                        <a asp-controller="Vehicles" asp-action="UpdateVehicles" asp-route-id="@item.Id" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Vehicles" asp-action="DeleteVehicles" asp-route-id="@item.Id" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

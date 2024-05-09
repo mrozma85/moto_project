@@ -1,0 +1,333 @@
+﻿@using Moto_Web.Models.VM;
+@model AdCreateVM
+
+<section class="advt-post bg-gray py-5">
+    <div class="container">
+
+        <form method="post" asp-action="CreateAds" >
+
+            <!-- Post Your ad start -->
+            <fieldset class="border border-gary px-3 px-md-4 py-4 mb-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Dodaj ogłoszenie</h3>
+                    </div>
+
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                    <div class="col-lg-6">
+                        <h6 class="font-weight-bold pt-4 pb-1">Nazwa ogłoszenia:</h6>
+                        <input asp-for="Ad.Vehicle.Title" class="form-control bg-white" />
+                        <span asp-validation-for="Ad.Vehicle.Title" class="text-danger"></span>
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Typ:</h6>
+                        <select asp-for="Ad.AdTypeId" class="form-select w-100 bg-white" asp-items="@Model.AdTypeList">
+                            <option disabled selected> --Wybierz typ ogłoszenia-- </option>
+                        </select>
+                        <span asp-validation-for="Ad.AdTypeId" class="text-danger"></span>    
+                        
+                        <h6 class="font-weight-bold pt-4 pb-1">Producent:</h6>
+                        <select asp-for="Ad.Vehicle.CompanyId" class="form-select w-100 bg-white" id="companyId" asp-items="@ViewBag.companies">
+                            <option disabled selected> --Wybierz producenta-- </option>
+                        </select>
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Model:</h6>
+                        <select asp-for="Ad.Vehicle.ModelId" class="form-select w-100 bg-white" id="modelId">
+                            <option disabled selected> --Wybierz model pojazdu-- </option>
+                        </select>
+
+                        @* <h6 class="font-weight-bold pt-4 pb-1">Producent:</h6>
+                        <select asp-for="Ad.Vehicle.CompanyId" class="form-select w-100 bg-white" asp-items="@Model.CompanyList">
+                            <option disabled selected> --Wybierz producenta pojazdu-- </option>
+                        </select>
+                        <span asp-validation-for="Ad.Vehicle.CompanyId" class="text-danger"></span> *@
+
+                        @*< h6 class="font-weight-bold pt-4 pb-1">Model:</h6>
+                        <select asp-for="Ad.Vehicle.ModelId" class="form-select w-100 bg-white" asp-items="@Model.ModelList">
+                            <option disabled selected> --Wybierz model pojazdu-- </option>
+                        </select>
+                        <span asp-validation-for="Ad.Vehicle.ModelId" class="text-danger"></span> *@
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Opis pojazdu:</h6>
+                        <textarea asp-for="Ad.Vehicle.Description" class="form-control" rows="7" placeholder="wpisz wszystkie informacje" required></textarea>
+                        <span asp-validation-for="Ad.Vehicle.Description" class="text-danger"></span>
+                        
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Kategoria:</h6>
+                        <select asp-for="Ad.CategoryId" class="form-select w-100 bg-white" asp-items="@Model.CategoryList">
+                            <option disabled selected> --Wybierz kategorie pojazdu-- </option>
+                        </select>
+                        <span asp-validation-for="Ad.CategoryId" class="text-danger"></span>
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Rok:</h6>
+                        <input asp-for="Ad.Vehicle.Year" class="form-control bg-white" />
+                        <span asp-validation-for="Ad.Vehicle.Year" class="text-danger"></span>
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Pojemność silnika(cc):</h6>
+                        <input asp-for="Ad.Vehicle.Engine" class="form-control bg-white" />
+                        <span asp-validation-for="Ad.Vehicle.Engine" class="text-danger"></span>
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Kolor:</h6>
+                        <input asp-for="Ad.Vehicle.Color" class="form-control bg-white" />
+                        <span asp-validation-for="Ad.Vehicle.Color" class="text-danger"></span>
+
+                        <h6 class="font-weight-bold pt-4 pb-1">Lokalizacja:</h6>
+                        <input asp-for="Ad.Vehicle.Location" class="form-control bg-white" />
+                        <span asp-validation-for="Ad.Vehicle.Location" class="text-danger"></span>
+
+                        <div class="price">
+                            <h6 class="font-weight-bold pt-4 pb-1">Cena Pojazdu (PLN):</h6>
+                            <input asp-for="Ad.Vehicle.Price" class="form-control" />
+                            <span asp-validation-for="Ad.Vehicle.Price" class="text-danger"></span>
+                        </div>
+
+                        @*<div class="choose-file text-center my-4 py-4 rounded bg-white">
+                            <label asp-for="Ad.Vehicle.ImageModel.ImageArray">
+                                <span class="d-block font-weight-bold text-dark">Upuśc pliki tutaj</span>
+                                <span class="d-block">lub</span>
+                                <span class="d-block btn bg-primary text-white my-3 select-files">Wybierz pliki</span>
+                                <span class="d-block">Maksymalna wielkość: 2 MB</span>
+                                <input type="file" class="form-control-file d-none" >
+                            </label>
+                        </div>*@
+
+                        @* <div class="mb-3">                            
+                            <input type="file" name="files" multiple="multiple" class="form-control" />
+                            <label asp-for="Ad.Vehicle.VehicleImages"></label> *@
+                        @* <div class="mb-3">
+                            <label asp-for="Ad.Files"></label>
+                            <input asp-for="Ad.Files" multiple="multiple" class="form-control" />
+                        </div> *@
+                    </div>
+                </div>
+            </fieldset>
+            <!-- Post Your ad end -->
+            <!-- seller-information start -->
+            @*<fieldset class="border px-3 px-md-4 py-4 my-5 seller-information bg-gray">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Seller Information</h3>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
+                        <input type="text" placeholder="Contact name" class="form-control bg-white" required>
+                        <h6 class="font-weight-bold pt-4 pb-1">Contact Number:</h6>
+                        <input type="text" placeholder="Contact Number" class="form-control bg-white" required>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
+                        <input type="email" placeholder="name@yourmail.com" class="form-control bg-white" required>
+                        <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
+                        <input type="text" placeholder="Your address" class="form-control bg-white" required>
+                    </div>
+                </div>
+            </fieldset>*@
+            <!-- seller-information end-->
+            <!-- ad-feature start -->
+            @*<fieldset class="border bg-white px-3 px-md-4 py-4 my-5 ad-feature bg-gray">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <h3 class="pb-3">
+                            Make Your Ad Featured
+                            <span class="float-right font-weight-normal text-success" data-toggle="tooltip" data-placement="top" title="Autem, architecto quisquam distinctio totam aut voluptatibus placeat ut nobis molestias rerum!">What is featured ad ?</span>
+                        </h3>
+
+                    </div>
+                    <div class="col-lg-6 my-3">
+                        <span class="mb-3 d-block">Premium Ad Options:</span>
+                        <ul>
+                            <li>
+                                <input type="radio" id="regular-ad" name="adfeature">
+                                <label for="regular-ad" class="font-weight-bold text-dark py-1">Regular Ad</label>
+                                <span>$00.00</span>
+                            </li>
+                            <li>
+                                <input type="radio" id="Featured-Ads" name="adfeature">
+                                <label for="Featured-Ads" class="font-weight-bold text-dark py-1">
+                                    Top Featured
+                                    Ads
+                                </label>
+                                <span>$59.00</span>
+                            </li>
+                            <li>
+                                <input type="radio" id="urgent-Ads" name="adfeature">
+                                <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Urgent Ads</label>
+                                <span>$79.00</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 my-3">
+                        <span class="mb-3 d-block">Please select the preferred payment method:</span>
+                        <ul>
+                            <li>
+                                <input type="radio" id="bank-transfer" name="adfeature">
+                                <label for="bank-transfer" class="font-weight-bold text-dark py-1">
+                                    Direct Bank
+                                    Transfer
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Cheque-Payment" name="adfeature">
+                                <label for="Cheque-Payment" class="font-weight-bold text-dark py-1">
+                                    Cheque
+                                    Payment
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Credit-Card" name="adfeature">
+                                <label for="Credit-Card" class="font-weight-bold text-dark py-1">Credit Card</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </fieldset>*@
+            <!-- ad-feature start -->
+            <!-- submit button -->
+            @*<div class="checkbox d-inline-flex">
+            <input type="checkbox" id="terms-&-condition" class="mt-1">
+            <label for="terms-&-condition" class="ml-2">By click you must agree with our
+            <span> <a class="text-success" href="terms-condition.html">Terms & Condition and Posting
+            Rules.</a></span>
+            </label>
+            </div>*@
+            @*<button type="submit" class="btn btn-primary d-block mt-2">Dodaj ogłoszenie</button>*@
+            <input type="submit" value="Następna strona" class="btn btn-primary d-block mt-2" />
+
+        </form>
+    </div>
+</section>
+
+
+@*
+<form asp-action="CreateAds">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-primary">Dodaj ogłoszenie</h1>
+        <hr />
+
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-2">
+                <label asp-for="Type" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Vehicle.Title" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Vehicle.Title" class="form-control" />
+                <span asp-validation-for="Vehicle.Title" class="text-danger"></span>
+            </div>
+
+            <div class="col-10 pb-3">
+                <input asp-for="Vehicle.Title" class="form-control" />
+                <span asp-validation-for="Vehicle.Price" class="text-danger"></span>
+            </div>
+
+            <div class="col-10 pb-3">
+                <input asp-for="Vehicle.Title" class="form-control" />
+                <span asp-validation-for="Vehicle.Location" class="text-danger"></span>
+            </div>
+
+            <div class="col-10 pb-3">
+                <input asp-for="Vehicle.Title" class="form-control" />
+                <span asp-validation-for="Vehicle.Engine" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Rate" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Rate" class="form-control" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Details" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <textarea asp-for="Details" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Details" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="ImageUrl" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Occupancy" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Occupancy" class="form-control" />
+                <span asp-validation-for="Occupancy" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Sqft" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Sqft" class="form-control" />
+                <span asp-validation-for="Sqft" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Amenity" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <textarea asp-for="Amenity" class="form-control"></textarea>
+                <span asp-validation-for="Amenity" class="text-danger"></span>
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="IndexAds" asp-controller="Ads" class="btn-primary btn form-control">Wróć do ogłoszeń</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Create" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+            getModelByCompanyId();
+        })
+        $("#companyId").change(function () {
+            getModelByCompanyId();
+        });
+        var getModelByCompanyId = function () {
+            $.ajax({
+                url: '@Url.Action("GetModelByCompanyId", "Ads")',
+                type: 'GET',
+                data: {
+                    companyId: $('#companyId').val(),
+                },
+                success: function (data) {
+                    $('#modelId').find('option').remove()
+                    $(data).each(
+                        function (index, item) {
+                            $('#modelId').append('<option value="' + item.id + '">' + item.name + '</option>')
+                        }
+                    );
+                }
+            })
+        }
+    </script>
+}
+
